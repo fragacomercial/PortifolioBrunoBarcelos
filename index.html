@@ -23,6 +23,7 @@
       <button onclick="toggleContato()"
         class="bg-cyan-500 hover:bg-cyan-600 text-slate-900 font-semibold px-5 py-2 rounded-lg transition">
         Contatos
+
       </button>
 
       <!-- Caixa de contatos -->
@@ -115,25 +116,31 @@
     const servicesContainer = document.getElementById("services");
 
     services.forEach((service, index) => {
-      const card = document.createElement("div");
-      card.className = "bg-slate-800 border border-slate-700 rounded-xl p-6";
+  const card = document.createElement("div");
+  card.className = "bg-slate-800 border border-slate-700 rounded-xl p-6";
 
-      card.innerHTML = `
-        <h4 class="text-xl font-semibold mb-2">${service.title}</h4>
-        <p class="text-slate-400 mb-4">${service.description}</p>
+  card.innerHTML = `
+    <h4 class="text-xl font-semibold mb-2">${service.title}</h4>
+    <p class="text-slate-400 mb-4">${service.description}</p>
 
-        <button onclick="toggle(${index})"
-          class="text-cyan-400 text-sm mb-3">
-          Ver detalhes
-        </button>
+    <button 
+      onclick="toggle(${index}, this)"
+      class="flex items-center justify-center gap-2
+             bg-slate-700 hover:bg-slate-600
+             text-white text-sm font-semibold
+             px-4 py-2 rounded-lg
+             transition-all duration-200">
+      Ver detalhes
+    </button>
 
-        <ul id="details-${index}" class="hidden space-y-2">
-          ${service.details.map(item => `<li class="text-slate-300 text-sm">• ${item}</li>`).join("")}
-        </ul>
-      `;
+    <ul id="details-${index}" class="hidden space-y-2 mt-4">
+      ${service.details.map(item => `<li class="text-slate-300 text-sm">• ${item}</li>`).join("")}
+    </ul>
+  `;
 
-      servicesContainer.appendChild(card);
-    });
+  servicesContainer.appendChild(card);
+});
+
 
     function toggle(index) {
       const el = document.getElementById(`details-${index}`);
@@ -143,7 +150,18 @@
     }
      function toggleContato() {
     const box = document.getElementById("contatoBox");
-    box.classList.toggle("hidden"); }
+    box.classList.toggle("hidden"); 
+    }
+
+    function toggle(index, btn) {
+  const el = document.getElementById(`details-${index}`);
+  el.classList.toggle("hidden");
+
+  btn.innerText = el.classList.contains("hidden")
+    ? "Ver detalhes"
+    : "Ver menos";
+}
+
   </script>
 
 </body>
