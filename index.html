@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio Bruno Barcelos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen">
+
+  <!-- HEADER -->
+  <header class="bg-slate-900/80 border-b border-slate-700 sticky top-0">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+    
+    <!-- Nome -->
+    <div>
+      <h1 class="text-3xl font-bold text-cyan-400">Bruno Barcelos</h1>
+      <p class="text-slate-400 text-sm">Gestor de Marketing & Social Media</p>
+    </div>
+
+    <!-- Botão Contatos -->
+    <div class="relative">
+      <button onclick="toggleContato()"
+        class="bg-cyan-500 hover:bg-cyan-600 text-slate-900 font-semibold px-5 py-2 rounded-lg transition">
+        Contatos
+      </button>
+
+      <!-- Caixa de contatos -->
+      <div id="contatoBox"
+        class="hidden absolute right-0 mt-3 w-72 bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-xl">
+
+        <p class="text-sm text-slate-300 mb-2">
+          📱 <strong>WhatsApp:</strong><br>
+          <a href="https://wa.me/5511937674004" target="_blank" class="text-cyan-400 hover:underline">
+            (11) 93767-4004
+          </a>
+        </p>
+
+        <p class="text-sm text-slate-300 mb-2">
+          ✉️ <strong>Email:</strong><br>
+          <a href="mailto:bruno.leonardo1399@gmail.com" class="text-cyan-400 hover:underline">
+            bruno.leonardo1399@gmail.com
+          </a>
+        </p>
+
+        <p class="text-sm text-slate-300">
+          📷 <strong>Instagram:</strong><br>
+          <a href="https://instagram.com/bruno.barcelos99" target="_blank" class="text-cyan-400 hover:underline">
+            @bruno.barcelos99
+          </a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-5xl font-bold mb-6">
+      Transformo presença digital em
+      <span class="text-cyan-400">resultados concretos</span>
+    </h2>
+    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+      Gestão estratégica de redes sociais, produção de conteúdo e presença digital completa.
+    </p>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h3 class="text-3xl font-bold mb-8 text-center">Serviços</h3>
+
+    <div id="services" class="grid md:grid-cols-2 gap-6"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-8 text-center text-slate-400">
+    © 2026 Bruno Barcelos
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const services = [
+      {
+        title: "Social Media",
+        description: "Gestão estratégica de redes sociais",
+        details: [
+          "Planejamento mensal",
+          "Criação de conteúdo",
+          "Postagens diárias",
+          "Interação com seguidores"
+        ]
+      },
+      {
+        title: "Produção de Conteúdo",
+        description: "Vídeos e artes profissionais",
+        details: [
+          "Roteiros criativos",
+          "Edição de vídeos",
+          "Conteúdo para Reels e TikTok"
+        ]
+      },
+      {
+        title: "Tráfego Pago",
+        description: "Anúncios focados em conversão",
+        details: [
+          "Meta Ads",
+          "Captação de leads",
+          "Otimização de ROI"
+        ]
+      }
+    ];
+
+    const servicesContainer = document.getElementById("services");
+
+    services.forEach((service, index) => {
+      const card = document.createElement("div");
+      card.className = "bg-slate-800 border border-slate-700 rounded-xl p-6";
+
+      card.innerHTML = `
+        <h4 class="text-xl font-semibold mb-2">${service.title}</h4>
+        <p class="text-slate-400 mb-4">${service.description}</p>
+
+        <button onclick="toggle(${index})"
+          class="text-cyan-400 text-sm mb-3">
+          Ver detalhes
+        </button>
+
+        <ul id="details-${index}" class="hidden space-y-2">
+          ${service.details.map(item => `<li class="text-slate-300 text-sm">• ${item}</li>`).join("")}
+        </ul>
+      `;
+
+      servicesContainer.appendChild(card);
+    });
+
+    function toggle(index) {
+      const el = document.getElementById(`details-${index}`);
+      el.classList.toggle("hidden");
+      
+      
+    }
+     function toggleContato() {
+    const box = document.getElementById("contatoBox");
+    box.classList.toggle("hidden"); }
+  </script>
+
+</body>
+</html>
